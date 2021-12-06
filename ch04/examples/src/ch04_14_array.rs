@@ -1,5 +1,5 @@
 fn main() {
-    let a1 = [false, true, false]; // [bool; 3]
+    let a1 = [fales, true, false]; // [bool; 3]
     let a2 = [0.0, -0.1, 4.3]; // [f64; 3]
 
     assert_eq!(a1.len(), a2.len());
@@ -37,12 +37,11 @@ fn main() {
     let array4 = ['a'; 50];
 
     for ch in array4.iter() {
-        println!("{}", ch);
+        println!("{}", *ch);
     }
 
     let mut array5 = [1; 50];
     for n in array5.iter_mut() {
         *n *= 2;
-        // println!("{}", *n);
     }
 }
