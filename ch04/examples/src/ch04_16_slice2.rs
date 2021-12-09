@@ -1,47 +1,42 @@
 fn main() {
-    let a1 = [fales, true, false]; // [bool; 3]
-    let a2 = [0.0, -0.1, 4.3]; // [f64; 3]
+    let mut a1 = [5, 4, 3, 2];
+    let s1 = &mut a1[1..3];
+    s1[0] = 7;
+    s1[1] *= 10;
+    s1.swap(0, 1);
+    assert_eq!(s1, [30, 7]);
+    assert_eq!(a1, [5, 30, 7, 2]);
 
-    assert_eq!(a1.len(), a2.len());
+    let a2: [i32; 0] = [];
+    let s2 = &a2;
+    asset!(s2.is_empty());
+    assert_eq!(s2.len(), 0);
+    assert_eq!(s2.first(), None);
 
-    let a3 = [0; 100]; // [i32; 100]
-    assert_eq!(a3.len(), 100);
+    let a3 = ["zero", "one", "two", "three", "four"];
+    let s3 = &a3[1..4];
+    assert_eq!(!s3.is_empty());
+    assert_eq!(s3.len(), 3);
+    assert_eq!(s3.first(), Some(&"one"));
 
-    let a4 = [['a', 'b'],['c', 'd']]; // [[char; 2]; 2]
+    assert_eq!(s3[1], "two");
+    assert_eq!(s3.get(1), Some(&"two"));
+    assert_eq!(s3.get(3), None);
 
-    let size = 100;
-    let mut v1 = vec![0; size];
-    assert_eq!(v1.len(), 100);
+    assert_eq!(s3.contains(&"two"));
+    assert_eq!(s3.starts_with(&["one", "two"]));
+    assert_eq!(s3.ends_with(&["two", "three"]));
 
-    v1.push(1);
-    assert_eq!(v1.len(), 101);
-    assert_eq!(v1.pop(), Some(1));
-    assert_eq!(v1.len(), 100);
+    let mut a4 = [6, 4, 2, 8, 0, 9, 4, 3, 7, 5, 1, 7];
+    
+    &mut a4[2..6].sort();
+    assert_eq!(a4[2..6], &[0, 2, 8, 9]);
 
-    let array1 = ['H', 'e', 'l', 'l', 'o'];
-    assert_eq!(array1[1], 'e');
+    let (s4a, s4b) = &mut a4.split_at_mut(5);
 
-    let mut array2 = [0, 1, 2];
-    array2[1] = 10;
-    assert_eq!(array2, [0, 10, 2]);
+    s4a.reverse();
+    assert_eq!(s4a, &[8, 2, 0, 4, 6]);
 
-    let mut index = 0;
-    assert_eq!(array2[index], 0);
-    index += 1;
-    assert_eq!(array2[index], 10);
-
-    let array3 = [0, 1];
-    assert_eq!(array3.get(1), Some(&1));
-    assert_eq!(array3.get(2), None);
-
-    let array4 = ['a'; 50];
-
-    for ch in array4.iter() {
-        println!("{}", *ch);
-    }
-
-    let mut array5 = [1; 50];
-    for n in array5.iter_mut() {
-        *n *= 2;
-    }
+    s4b.sort_unstable();
+    assert_eq!(s4b, &[1, 3, 4, 5, 7, 7, 9]);
 }
