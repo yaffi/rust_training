@@ -21,10 +21,6 @@ fn main() {
 
     let polygon2 = Polygon {
         vertexes: vec![(0, 0), (3, 0), (2, 2)],
-        ..Default::default()
-    };
-
-    println!("{:?}", polygon1.vertexes);
-    println!("{:?}", polygon1.stroke_width);
-    println!("{:?}", polygon1.fill);
+        ..Default::default(),
+    }
 }
