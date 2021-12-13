@@ -1,10 +1,17 @@
-struct Triangle(Vertex, Vertex, Vertex);
-struct Vertex(i32, i32);
+struct UserName(String);
+struct Id(u64);
+struct Timestamp(u64);
+type User = (Id, UserName, Timestamp);
+
+fn new_user(name: UserName, id: Id, created: Timestamp) -> User {
+    (id, name, created)
+}
 
 fn main() {
-    let vx0 = Vertex(0, 0);
-    let vx1 = Vertex(3, 0);
-    let triangle = Triangle(vx0, vx1, Vertex(2, 2));
-
-    assert_eq!((triangle.1).0, 3);
+    let id = Id(400);
+    let now = Timestamp(4567890123);
+    // 引数の順番がおかしいのでエラー
+    // let bad_user = new_user(UserName(String::from("yaffi"), now, id);
+    // error[E0308]: mismatched types
+    // expected type `id`, found type `Timestamp`
 }
